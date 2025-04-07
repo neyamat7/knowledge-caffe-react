@@ -13,15 +13,25 @@ const BlogCard = ({ allBlogs, blog, onReadTime, onBookmark }) => {
     hashtags,
   } = blog;
 
-  const [mardAsRead, setMarkAsRead] = useState(false);
+  const [markAsRead, setMarkAsRead] = useState(false);
+
   const [bookmarked, setBookmarked] = useState(false);
 
   function toggleMardAsRead() {
-    setMarkAsRead(!mardAsRead);
+    setMarkAsRead(!markAsRead);
   }
 
   function toggleBookmark() {
     setBookmarked(!bookmarked);
+    // markAsRead ? setMarkAsRead(false) && onReadTime(-reading_time) : null;
+    if (markAsRead) {
+      setMarkAsRead(false);
+      onReadTime(-reading_time);
+    }
+  }
+
+  function checkBookMark() {
+    bookmarked ? setBookmarked(false) : null;
   }
 
   return (
@@ -75,16 +85,22 @@ const BlogCard = ({ allBlogs, blog, onReadTime, onBookmark }) => {
       <button
         onClick={() => {
           {
-            !mardAsRead ? onReadTime(reading_time) : onReadTime(-reading_time);
+            !markAsRead
+              ? onReadTime(reading_time, title, checkBookMark)
+              : onReadTime(-reading_time);
           }
           toggleMardAsRead();
         }}
-        className="text-blue-950 underline cursor-pointer"
+        className={`${
+          markAsRead ? "text-red-500" : "text-blue-950"
+        } underline cursor-pointer`}
       >
-        {mardAsRead ? "Marked as read" : "Mark as read"}
+        {markAsRead ? "Marked as read" : "Mark as read"}
       </button>
     </div>
   );
 };
 
 export default BlogCard;
+
+

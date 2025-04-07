@@ -9,18 +9,25 @@ const Blogs = ({ blogsContent }) => {
   const [bookmarkedBlogs, setBookmarkedBlog] = useState([]);
 
   // read time handler
-  function handleReadTime(time) {
+  function handleReadTime(time, title, checkBookMark) {
     setReadTime(readTime + time);
-  }
-
-  // bookmark handler
-  function handleBookmark(title) {
-    if (bookmarkedBlogs.includes(title)) { 
+    if (bookmarkedBlogs.includes(title)) {
       const newBookmarks = bookmarkedBlogs.filter(
         (blogTitle) => blogTitle !== title
       );
       setBookmarkedBlog(newBookmarks);
-    } else { 
+      checkBookMark();
+    }
+  }
+
+  // bookmark handler
+  function handleBookmark(title) {
+    if (bookmarkedBlogs.includes(title)) {
+      const newBookmarks = bookmarkedBlogs.filter(
+        (blogTitle) => blogTitle !== title
+      );
+      setBookmarkedBlog(newBookmarks);
+    } else {
       setBookmarkedBlog([...bookmarkedBlogs, title]);
     }
   }
