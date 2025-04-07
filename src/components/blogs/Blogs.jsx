@@ -32,8 +32,8 @@ const Blogs = ({ blogsContent }) => {
     }
   }
   return (
-    <div className=" mt-6 px-5 max-w-screen-xl mx-auto flex gap-3 relative">
-      <div className="basis-8/12 blogs h-fit overflow-y-auto">
+    <div className=" mt-6 px-5 max-w-screen-xl mx-auto flex flex-col-reverse sm:flex-row gap-3 relative">
+      <div className="sm:basis-8/12 blogs h-fit overflow-y-auto">
         {allBlogs.map((blog) => (
           <BlogCard
             key={blog.id}
@@ -45,7 +45,7 @@ const Blogs = ({ blogsContent }) => {
         ))}
       </div>
       {/* bookmarks */}
-      <div className="basis-4/12 sticky top-5 h-fit">
+      <div className="sm:basis-4/12 sm:sticky top-5 h-fit">
         <div className="mb-6">
           <SpentTime readTime={readTime}></SpentTime>
         </div>

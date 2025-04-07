@@ -40,13 +40,17 @@ const BlogCard = ({ allBlogs, blog, onReadTime, onBookmark }) => {
         allBlogs.indexOf(blog) === allBlogs.length - 1 ? "border-none" : ""
       }`}
     >
-      <div>
-        <img className="w-full rounded-lg" src={cover} alt="" />
+      <div className="max-w-full max-h-[500px] w-full h-full">
+        <img
+          className="max-w-full max-h-[260px] md:max-h-[500px]  w-full h-full rounded-lg"
+          src={cover}
+          alt=""
+        />
       </div>
 
-      <div className="flex justify-between">
+      <div className="flex flex-col sm:flex-row justify-between">
         {/* profile and name */}
-        <div className="flex gap-3 items-center">
+        <div className="flex pl-2 gap-3 items-center">
           <Profile url={author_img}></Profile>
           <div>
             <h2>{author}</h2>
@@ -54,7 +58,7 @@ const BlogCard = ({ allBlogs, blog, onReadTime, onBookmark }) => {
           </div>
         </div>
         {/* bookmark */}
-        <div className="flex gap-2 items-center text-gray-500">
+        <div className="flex gap-2 items-center text-gray-500 self-end sm:self-auto">
           <span>{reading_time} min read</span>
           <span
             onClick={() => {
@@ -72,7 +76,7 @@ const BlogCard = ({ allBlogs, blog, onReadTime, onBookmark }) => {
         </div>
       </div>
 
-      <h1 className="text-4xl font-semibold">{title}</h1>
+      <h1 className=" text-2xl sm:text-4xl font-semibold">{title}</h1>
 
       <div>
         {hashtags.map((tag) => (
@@ -102,5 +106,3 @@ const BlogCard = ({ allBlogs, blog, onReadTime, onBookmark }) => {
 };
 
 export default BlogCard;
-
-
